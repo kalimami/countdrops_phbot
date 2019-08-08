@@ -3,7 +3,7 @@ import QtBind
 
 gui = QtBind.init(__name__,'CountDrops')
 
-metaby = QtBind.createLabel(gui,'by Kardamot // Hellixir',615,4)
+metaby = QtBind.createLabel(gui,'by Kardamot // Hellixir',11,267)
 lCIZGI = QtBind.createLabel(gui,'_____________________',11,18)
 lTITAN = QtBind.createLabel(gui,'TITAN DROPS',40,10)
 lLMP = QtBind.createLabel(gui,'Lucky Magic Powder',11,40)
@@ -99,27 +99,38 @@ qrevival = QtBind.createLabel(gui,'0',436,235)
 qluck = QtBind.createLabel(gui,'0',436,250)
 qsteady = QtBind.createLabel(gui,'0',436,265)
 
-lCIZGI = QtBind.createLabel(gui,'_____________________',565,178)
-lMagStones = QtBind.createLabel(gui,'ELIXIRS',610,170)
-lWeapon = QtBind.createLabel(gui,'Weapon',565,200)
-lProtector = QtBind.createLabel(gui,'Protector',565,215)
-lAccessory = QtBind.createLabel(gui,'Accessory',565,230)
-lShield = QtBind.createLabel(gui,'Shield',565,245)
-qweapon = QtBind.createLabel(gui,'0',684,200)
-qprotector = QtBind.createLabel(gui,'0',684,215)
-qaccessory = QtBind.createLabel(gui,'0',684,230)
-qshield = QtBind.createLabel(gui,'0',684,245)
+lCIZGI = QtBind.createLabel(gui,'_____________________',565,120)
+lElixirs = QtBind.createLabel(gui,'ELIXIRS',610,116)
+lWeapon = QtBind.createLabel(gui,'Weapon',565,137)
+lProtector = QtBind.createLabel(gui,'Protector',565,152)
+lAccessory = QtBind.createLabel(gui,'Accessory',565,167)
+lShield = QtBind.createLabel(gui,'Shield',565,182)
+qweapon = QtBind.createLabel(gui,'0',684,137)
+qprotector = QtBind.createLabel(gui,'0',684,152)
+qaccessory = QtBind.createLabel(gui,'0',684,167)
+qshield = QtBind.createLabel(gui,'0',684,182)
+
+lCIZGI = QtBind.createLabel(gui,'_____________________',565,204)
+lCoins = QtBind.createLabel(gui,'COINS',610,200)
+lGoldC = QtBind.createLabel(gui,'Gold Coin',565,220)
+lSilverC = QtBind.createLabel(gui,'Silver Coin',565,235)
+lCopperC = QtBind.createLabel(gui,'Copper Coin',565,251)
+lIronC = QtBind.createLabel(gui,'Iron Coin',565,268)
+qgold = QtBind.createLabel(gui,'0',684,220)
+qsilver = QtBind.createLabel(gui,'0',684,235)
+qcopper = QtBind.createLabel(gui,'0',684,251)
+qiron = QtBind.createLabel(gui,'0',684,268)
 
 lLIST = QtBind.createList(gui,150,40,1,207)
 lLIST2 = QtBind.createList(gui,303,40,1,220)
 lLIST3 = QtBind.createList(gui,455,40,1,240)
-lLIST4 = QtBind.createList(gui,549,200,1,60)
-lLIST5 = QtBind.createList(gui,703,200,1,60)
-lBUTTONBG = QtBind.createList(gui,540,47,180,90)
-lNEREYAZI = QtBind.createLabel(gui,'Where do you want to look?',565,40)
-btnStorage = QtBind.createButton(gui,'btnStorage_clicked',"  Look at Storage  ",584,86)
-btnGuildStorage = QtBind.createButton(gui,'btnGuildStorage_clicked',"  Look at Guild Storage  ",572,111)
-btnInventory = QtBind.createButton(gui,'btnInventory_clicked',"  Look at Inventory  ",579,61)
+lLIST4 = QtBind.createList(gui,540,135,1,155)
+lLIST5 = QtBind.createList(gui,720,135,1,155)
+lBUTTONBG = QtBind.createList(gui,540,15,180,88)
+lNEREYAZI = QtBind.createLabel(gui,'Where do you want to look?',565,8)
+btnStorage = QtBind.createButton(gui,'btnStorage_clicked',"  Look at Storage  ",584,52)
+btnGuildStorage = QtBind.createButton(gui,'btnGuildStorage_clicked',"  Look at Guild Storage  ",572,75)
+btnInventory = QtBind.createButton(gui,'btnInventory_clicked',"  Look at Inventory  ",579,29)
 leDegree = QtBind.createLineEdit(gui,"11",470,150,19,19)
 lDegree = QtBind.createLabel(gui,'Degree',494,153)
 
@@ -135,6 +146,7 @@ def btnGuildStorage_clicked():
 def btnInventory_clicked():
 	countIn = 'Inventory'
 	countItems(countIn)
+
 
 def countItems(countIn):
 	LMP = 0
@@ -184,6 +196,10 @@ def countItems(countIn):
 	protector = 0
 	accessory = 0
 	shield = 0
+	gold = 0
+	silver = 0
+	copper = 0
+	iron = 0
 	items = []
 	if countIn == 'Storage':
 		items = get_storage()['items']
@@ -289,6 +305,14 @@ def countItems(countIn):
 				accessory += item['quantity']
 			if item != None and "Intensifing" in item['name'] and "(Shield)" in item['name']:
 				shield += item['quantity']
+			if item != None and "Coin" in item['name'] and "Gold" in item['name']:
+				gold += item['quantity']
+			if item != None and "Coin" in item['name'] and "Silver" in item['name']:
+				silver += item['quantity']
+			if item != None and "Coin" in item['name'] and "Copper" in item['name']:
+				copper += item['quantity']
+			if item != None and "Coin" in item['name'] and "Iron" in item['name']:
+				iron += item['quantity']
 	QtBind.setText(gui,qLMP,str(LMP))
 	QtBind.setText(gui,qSTRScroll,str(STRScroll))
 	QtBind.setText(gui,qINTScroll,str(INTScroll))
@@ -336,5 +360,9 @@ def countItems(countIn):
 	QtBind.setText(gui,qprotector,str(protector))
 	QtBind.setText(gui,qaccessory,str(accessory))
 	QtBind.setText(gui,qshield,str(shield))
+	QtBind.setText(gui,qgold,str(gold))
+	QtBind.setText(gui,qsilver,str(silver))
+	QtBind.setText(gui,qcopper,str(copper))
+	QtBind.setText(gui,qiron,str(iron))
 	
-log('Plugins: [CountDrops] successfully loaded')
+log('Plugins: [CountDrops v1.2] successfully loaded')
